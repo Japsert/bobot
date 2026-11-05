@@ -1,0 +1,12 @@
+[project]
+name = "bobot"
+version = "0.1.0"
+description = "For running the scripts scattered across the repo"
+readme = "README.md"
+authors = [
+    { name = "Jasper Trooster", email = "jasper.trooster@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "pyserial>=3.5",
+]
