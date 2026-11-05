@@ -1,0 +1,27 @@
+# The Order of Things
+
+- [ ] Microphone to Pi
+  - [x] Flash blink
+  - [x] Test TinyUSB
+  - [ ] Send some data every second
+  - [ ] Connect microphone
+  - [ ] Send microphone data
+- [ ] Pi to speaker
+  - [ ] Receive cable and connect
+  - [ ] Set up ShairPlay
+  - [ ] Play from Mac
+- [ ] Record 2s and play on speaker
+- [ ] Wakeword detection, then record and play
+  - [ ] Start building database of wakeword triggers
+- [ ] Speech-to-text
+- [ ] LLM API integration
+- [ ] Text-to-speech
+- [ ] Tools
+  - [ ] Music (gnome music?)
+  - [ ] Show on Mac
+- [ ] Interruption: echo cancellation
+- [ ] Integration
+  - [ ] Calendar
+  - [ ] Home Assistant?
+- [ ] Speaker recognition
+- [ ] ...

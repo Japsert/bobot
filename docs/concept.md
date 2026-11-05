@@ -29,9 +29,3 @@
 - Expand to multiple rooms
 - Improve wake word detection over time
   - This resets once the microphone changes though
-
-# MVP checklist
-
-- [ ] install shairport on pi and connect to acton permanently
-- [ ] connect mic to pi directly (skip board)
-- [ ]
