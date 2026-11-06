@@ -3,7 +3,7 @@
 - [ ] Microphone to Pi
   - [x] Flash blink
   - [x] Test TinyUSB
-  - [ ] Send some data every second
+  - [x] Send some data every second
   - [ ] Connect microphone
   - [ ] Send microphone data
 - [ ] Pi to speaker

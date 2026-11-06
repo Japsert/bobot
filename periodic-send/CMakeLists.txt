@@ -41,8 +41,8 @@ pico_set_program_name(periodic-send "periodic-send")
 pico_set_program_version(periodic-send "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-#pico_enable_stdio_uart(periodic-send 0)
-pico_enable_stdio_usb(periodic-send 0)
+pico_enable_stdio_uart(periodic-send 0)
+pico_enable_stdio_usb(periodic-send 1)
 
 # Add the standard library to the build
 target_link_libraries(periodic-send
@@ -53,4 +53,5 @@ target_include_directories(periodic-send PRIVATE
         ${CMAKE_CURRENT_LIST_DIR}
 )
 
+# Create map/bin/hex/uf2 outputs
 pico_add_extra_outputs(periodic-send)

@@ -7,7 +7,10 @@
             "isBuildCommand": true,
             "command": "${userHome}/.pico-sdk/ninja/v1.13.2/ninja",
             "args": ["-C", "${workspaceFolder}/build"],
-            "group": "build",
+            "group": {
+              "kind": "build",
+              "isDefault": true
+            },
             "presentation": {
                 "reveal": "always",
                 "panel": "dedicated"

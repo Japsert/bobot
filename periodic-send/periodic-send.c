@@ -1,14 +1,12 @@
 #include "pico/stdlib.h"
-#include "hardware/gpio.h"
-
-#define LED_PIN 25
+#include <stdio.h>
 
 int main() {
-   gpio_init(LED_PIN);
-   gpio_set_dir(LED_PIN, GPIO_OUT);
+   stdio_init_all();
 
+   int i = 0;
    while (true) {
-      gpio_xor_mask(1u << LED_PIN); // toggle
+      printf("Hi! This is message %d.\n", i++);
       sleep_ms(500);
    }
 }
