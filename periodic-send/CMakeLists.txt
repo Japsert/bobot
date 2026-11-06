@@ -41,7 +41,7 @@ pico_set_program_name(periodic-send "periodic-send")
 pico_set_program_version(periodic-send "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(periodic-send 0)
+#pico_enable_stdio_uart(periodic-send 0)
 pico_enable_stdio_usb(periodic-send 0)
 
 # Add the standard library to the build
@@ -54,4 +54,3 @@ target_include_directories(periodic-send PRIVATE
 )
 
 pico_add_extra_outputs(periodic-send)
-
