@@ -1,3 +1,6 @@
 [submodule "tinyusb"]
 	path = tinyusb
 	url = https://github.com/hathach/tinyusb.git
+[submodule "pico-examples"]
+	path = pico-examples
+	url = https://github.com/raspberrypi/pico-examples.git
