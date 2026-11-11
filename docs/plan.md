@@ -26,7 +26,7 @@
   
 ## Extra Features
 
-- [ ] Link Mac and speaker volume
+- [x] Link Mac and speaker volume
 - [ ] Wireless mic
 - [ ] Tools
   - [ ] Music (gnome music?)
