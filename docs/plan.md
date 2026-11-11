@@ -10,12 +10,12 @@
   - [ ] **Send microphone data**
   - [ ] Record 2s on Mac
   - [ ] Record 2s on Pi
-- [ ] Pi to speaker
+- [x] Pi to speaker
   - [x] Receive cable and connect
   - [x] Set up ShairPlay
   - [x] Play from Mac
   - [x] Scratch ShairPlay, set up Mac-Pi over Bluetooth
-  - [ ] **Pi-speaker over Bluetooth**
+  - [x] Pi-speaker over Bluetooth
 - [ ] Record 2s and play on speaker
 - [ ] Wakeword detection, then record and play
   - [ ] Start building database of wakeword triggers
