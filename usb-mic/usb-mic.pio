@@ -1,0 +1,80 @@
+.pio_version 0
+
+.program usbmic
+.side_set 1
+
+; WS 0, SCK 0
+; setup loop24, SCK 1
+; SCK 0
+; repeat 24 times:
+    ; read SD bit, SCK 1
+    ; loop, SCK 0
+; setup loop6, SCK 1
+; SCK 0
+; repeat 5 times:
+    ; noop, SCK 1
+    ; loop, SCK 0
+; setup loop32, SCK 1
+; WS 1, SCK 0
+; repeat 31 times:
+    ; noop, SCK 1
+    ; loop, SCK 0
+; noop, SCK 1
+
+
+    set pins, 0     side 0 ; WS 0, SCK 0
+    set x, 23       side 1 ; set counter, SCK 1
+    nop             side 0 ; SCK 0
+loop24:
+    in pins, 1      side 1 ; SD bit -> ISR, autopush, SCK 1
+    jmp x-- loop24  side 0 ; loop, SCK 0
+
+    set x, 4        side 1 ; set counter, SCK 1
+    nop             side 0 ; SCK 0
+loop5:
+    nop             side 1 ; SCK 1
+    jmp x-- loop5   side 0 ; SCK 0
+
+    set x, 30       side 1 ; set counter, SCK 1
+    set pins, 1     side 0 ; WS 1, SCK 0
+loop31:
+    nop             side 1 ; SCK 1
+    jmp x-- loop31  side 0 ; SCK 0
+
+    nop             side 1 ; SCK 1
+
+
+
+% c-sdk {
+#include "hardware/clocks.h" // clock_get_hz, clk_sys
+
+// VDD - 3v3
+// GND - GND
+// SD  - GP27
+// WS  - GP28
+// SCK - GP29
+// L/R - GND
+
+static inline void usbmic_program_init(PIO pio, uint sm, uint offset, uint sd_pin, uint ws_pin, uint sck_pin) {
+    pio_sm_config c = usbmic_program_get_default_config(offset);
+
+    sm_config_set_in_pins(&c, sd_pin);
+    sm_config_set_in_shift(&c, false, true, 24); // shift ISR to left, enable autopush at 24 bits
+    sm_config_set_set_pins(&c, ws_pin, 1);
+    sm_config_set_sideset_pins(&c, sck_pin);
+    pio_gpio_init(pio, sd_pin);
+    pio_gpio_init(pio, ws_pin);
+    pio_gpio_init(pio, sck_pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, sd_pin, 1, false); // false = receive
+    pio_sm_set_consecutive_pindirs(pio, sm, ws_pin, 1, true);  // true = transmit
+    pio_sm_set_consecutive_pindirs(pio, sm, sck_pin, 1, true);
+
+    int ws_freq = 16000;         // 16 kHz sampling
+    int cycles_per_sample = 128; // PIO instructions per sample
+    float div = (float)clock_get_hz(clk_sys) / (ws_freq * cycles_per_sample);
+    sm_config_set_clkdiv(&c, div);
+
+    pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_enabled(pio, sm, true);
+}
+%}
